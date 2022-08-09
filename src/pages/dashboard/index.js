@@ -7,6 +7,7 @@ const dashboard = () => {
       <header>
         <p>Lista de Tarefas</p>
       </header>
+
       <main>
         <Form />
         <List />

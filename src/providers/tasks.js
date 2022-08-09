@@ -4,12 +4,19 @@ export const TasksContext = createContext([]);
 
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || [] 
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
+  const [tasksCompleted, setTasksCompleted] = useState(
+    JSON.parse(localStorage.getItem("tasksCompleted")) || []
   );
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    localStorage.setItem("tasksCompleted", JSON.stringify(tasksCompleted));
+  }, [tasks, tasksCompleted]);
+  
+  
 
   const addToList = (item) => {
     setTasks([...tasks, item]);
@@ -22,8 +29,37 @@ export const TasksProvider = ({ children }) => {
     setTasks(list);
   };
 
+  const completedList = (item, id) => {
+    removeFromList(id);
+    setTasksCompleted([...tasksCompleted, item]);
+  };
+
+  const updateItem = (id, editValue) => {
+    const allTasks = [...tasks];
+
+    const taskUpdated = allTasks.map((task, index) => {
+      if (index === id) {
+        return (task = editValue);
+      }
+
+      return task;
+    });
+
+    setTasks(taskUpdated);
+  };
+
   return (
-    <TasksContext.Provider value={{ setTasks, tasks,  addToList, removeFromList }}>
+    <TasksContext.Provider
+      value={{
+        setTasks,
+        tasks,
+        addToList,
+        removeFromList,
+        completedList,
+        updateItem,
+        tasksCompleted
+      }}
+    >
       {children}
     </TasksContext.Provider>
   );
