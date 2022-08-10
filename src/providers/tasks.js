@@ -3,66 +3,82 @@ import { createContext, useState, useContext, useEffect } from "react";
 export const TasksContext = createContext([]);
 
 export const TasksProvider = ({ children }) => {
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
-  );
 
-  const [tasksCompleted, setTasksCompleted] = useState(
-    JSON.parse(localStorage.getItem("tasksCompleted")) || []
-  );
+    const [tasks, setTasks] = useState(
+        JSON.parse(localStorage.getItem("tasks")) || []
+    );
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    localStorage.setItem("tasksCompleted", JSON.stringify(tasksCompleted));
-  }, [tasks, tasksCompleted]);
-  
-  
+    const [tasksCompleted, setTasksCompleted] = useState(
+        JSON.parse(localStorage.getItem("tasksCompleted")) || []
+    );
 
-  const addToList = (item) => {
-    setTasks([...tasks, item]);
-  };
+    const [showTasks, setShowTasks] = useState(tasks);
 
-  const removeFromList = (item) => {
-    const list = tasks.filter((task, index) => item !== index);
-    localStorage.setItem("tasks", JSON.stringify(list));
+    const [valueButton, setValueButton] = useState();
 
-    setTasks(list);
-  };
 
-  const completedList = (item, id) => {
-    removeFromList(id);
-    setTasksCompleted([...tasksCompleted, item]);
-  };
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        localStorage.setItem("tasksCompleted", JSON.stringify(tasksCompleted));
+    }, [tasks, tasksCompleted, showTasks]);
 
-  const updateItem = (id, editValue) => {
-    const allTasks = [...tasks];
 
-    const taskUpdated = allTasks.map((task, index) => {
-      if (index === id) {
-        return (task = editValue);
-      }
 
-      return task;
-    });
+    const addToList = (item) => {
+        setTasks([...tasks, item]);
+    };
 
-    setTasks(taskUpdated);
-  };
 
-  return (
-    <TasksContext.Provider
-      value={{
-        setTasks,
-        tasks,
-        addToList,
-        removeFromList,
-        completedList,
-        updateItem,
-        tasksCompleted
-      }}
-    >
-      {children}
-    </TasksContext.Provider>
-  );
+    const removeFromList = (item) => {
+        const list = tasks.filter((task, index) => item !== index);
+        localStorage.setItem("tasks", JSON.stringify(list));
+        setTasks(list);
+        setShowTasks(list);
+    };
+
+
+    const completedList = (item, id) => {
+        removeFromList(id);
+        setTasksCompleted([...tasksCompleted, item]);
+    };
+
+
+    const updateItem = (id, editValue) => {
+        const allTasks = [...tasks];
+
+        const taskUpdated = allTasks.map((task, index) => {
+            if (index === id) {
+                return (task = editValue);
+            }
+
+            return task;
+        });
+
+        setTasks(taskUpdated);
+        setShowTasks(taskUpdated);
+    };
+
+
+
+    return (
+        <TasksContext.Provider
+            value={{
+                tasks,
+                tasksCompleted,
+                showTasks,
+                setTasks,
+                setShowTasks,
+                addToList,
+                removeFromList,
+                completedList,
+                updateItem,
+                valueButton,
+                setValueButton,
+            }}
+        >
+            {children}
+        </TasksContext.Provider>
+    );
 };
 
 export const useTasks = () => useContext(TasksContext);

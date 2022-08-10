@@ -2,7 +2,7 @@ import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
 
 
-const ListCard = ({ task, id }) => {
+const ListCard = ({ task, id, value }) => {
   const { removeFromList, completedList, updateItem } = useTasks();
   const [onEdit, setOnEdit] = useState(false);
   const [editValue, setEditValue] = useState(task);
@@ -29,7 +29,7 @@ const ListCard = ({ task, id }) => {
     );
   } else {
     return (
-      <li>
+      <li className={value}>
         <label htmlFor={id}>{task}</label>
         <button onClick={() => completedList(task, id)}>Completa</button>
         <button onClick={handleOnEdit}> Atualizar </button>
