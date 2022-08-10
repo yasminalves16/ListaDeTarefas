@@ -1,7 +1,7 @@
 import Form from "../../components/Form";
 import List from "../../components/List";
 
-const dashboard = () => {
+const Dashboard = () => {
   return (
     <>
       <header>
@@ -16,4 +16,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;
