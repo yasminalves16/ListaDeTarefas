@@ -2,14 +2,14 @@ import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
 
 const ListCard = ({ task, id }) => {
-    const { removeFromList, completedList, updateItem, valueButton } = useTasks();
+    const { removeFromList, completedList, updateItem, valueButton } =
+        useTasks();
     const [onEdit, setOnEdit] = useState(false);
     const [editValue, setEditValue] = useState(task);
 
     const handleOnEdit = () => {
         setOnEdit(true);
     };
-
 
     const handleSave = (id) => {
         setOnEdit(false);
@@ -20,6 +20,7 @@ const ListCard = ({ task, id }) => {
         }
     };
 
+    console.log(valueButton);
     if (onEdit) {
         return (
             <li>
@@ -34,23 +35,23 @@ const ListCard = ({ task, id }) => {
             </li>
         );
     } else {
-        if (valueButton === "Todos") {
+        if (valueButton === "Concluidas") {
             return (
                 <li className={valueButton}>
                     <label htmlFor={id}>{task}</label>
-                    <button onClick={() => completedList(task, id)}>
-                        Completa
-                    </button>
-                    <button onClick={handleOnEdit}> Atualizar </button>
-                    <button onClick={() => removeFromList(id)}>Deletar</button>
                 </li>
             );
         }
-        return(
+        return (
             <li className={valueButton}>
                 <label htmlFor={id}>{task}</label>
+                <button onClick={() => completedList(task, id)}>
+                    Completa
+                </button>
+                <button onClick={handleOnEdit}> Atualizar </button>
+                <button onClick={() => removeFromList(id)}>Deletar</button>
             </li>
-        )
+        );
     }
 };
 

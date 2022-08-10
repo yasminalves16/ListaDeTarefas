@@ -1,9 +1,15 @@
-import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
-// import { Container } from "./styles";
+import { BiSearchAlt2 } from "react-icons/bi";
+
+import Button from "../Button";
+
+import { useTasks } from "../../providers/tasks";
+
+import { Container, Form } from "./styles";
+
+
 
 const Aside = () => {
-
     const [input, setInput] = useState("");
 
     const { showTasks, setShowTasks } = useTasks();
@@ -20,36 +26,35 @@ const Aside = () => {
         setShowTasks(att);
     };
 
-    
     const filter = () => {
         const filterTasks = showTasks.filter((item) => {
-
-            return (
-                item.toUpperCase().includes(input.toUpperCase()) 
-            );
+            return item.toUpperCase().includes(input.toUpperCase());
         });
         setShowTasks(filterTasks);
     };
 
-
     return (
-        <div>
-            <aside>
-                <button onClick={sorted}>A - Z</button>
-                <button onClick={sortedReverse}>Z - A</button>
-            </aside>
-            <form>
-                <input
-                    type="text"
-                    placeholder="Digitar Pesquisa"
-                    onChange={(event) => setInput(event.target.value)}
-                />
+        <Container>
+            <section>
+                <Button children="A - Z" functionClick={sorted}/>
+                <Button children="Z - A" functionClick={sortedReverse}/>
+            </section>
+            <Form>
+                <div>
+                    <BiSearchAlt2/>
+                    <input
+                        type="text"
+                        placeholder="Digitar Pesquisa"
+                        onChange={(event) => setInput(event.target.value)}
+                    />
+                </div>
                 <button type="button" onClick={() => filter()}>
                     Pesquisar
                 </button>
-            </form>
-        </div>
+            </Form>
+        </Container>
     );
 };
 
-export default Aside;
+export default Aside
+

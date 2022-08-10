@@ -1,5 +1,6 @@
 import { useTasks } from "../../providers/tasks";
 import { Container } from "./styles";
+import Button from "../Button"
 
 const NavBar = () => {
     const { tasks, tasksCompleted, setShowTasks, setValueButton } = useTasks();
@@ -19,10 +20,9 @@ const NavBar = () => {
     return (
         <Container>
             <nav>
-                <button onClick={showAll}>Todos</button>
-                <button onClick={showCompleted}>Concluidas</button>
+                <Button children= "Todas" functionClick={showAll}/>
+                <Button children= "Concluidas" functionClick={showCompleted}/>
             </nav>
-    
         </Container>
     );
 };
