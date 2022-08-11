@@ -27,12 +27,15 @@ export const TasksProvider = ({ children }) => {
 
 
     const addToList = (item) => {
+        
         if(item){
             setTasks([...tasks, item]);
             toast.success("Tarefa adicionada")
+        }else{
+
+            toast.error("Insira uma tarefa")
         }
 
-        toast.error("Insira uma tarefa")
     };
 
 
@@ -42,15 +45,21 @@ export const TasksProvider = ({ children }) => {
         setTasks(list);
         setShowTasks(list);
 
-        toast.success("Tarefa deletada")
+        toast.success("Tarefa deletada ou completa com sucesso")
     };
 
+    const removeAll = () => {
+        localStorage.setItem("tasksCompleted", JSON.stringify([]));
+        setTasksCompleted([]);
+        setShowTasks([]);
+    }
 
     const completedList = (item, id) => {
         removeFromList(id);
         setTasksCompleted([...tasksCompleted, item]);
         toast.success("Parabéns, tarefa completa.. Para ver clique em concluidas")
     };
+
 
 
     const updateItem = (id, editValue) => {
@@ -85,6 +94,7 @@ export const TasksProvider = ({ children }) => {
                 updateItem,
                 valueButton,
                 setValueButton,
+                removeAll,
             }}
         >
             {children}

@@ -37,21 +37,29 @@ export const FormStyle = styled.form`
             background-color: #737373;
         }
     }
+    @media (max-width:900px) {
+        flex-direction: column;
+
+        button {
+            margin-top: 5px;
+            width: 150px;
+            height: 4vh;
+        }
+
+    }
 
     @media (max-width: 724px) {
         flex-direction: column;
         align-items: center;
 
-        div{
+        div {
             height: 4vh;
             width: 95%;
-            padding: 0px;
-
         }
-        
-        button{
+
+        button {
             margin-top: 5px;
-            width:150px;
+            width: 150px;
             height: 4vh;
         }
     }

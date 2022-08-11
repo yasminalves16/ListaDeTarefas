@@ -1,7 +1,7 @@
 import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
 
-import { Container, LiEdit } from "./styles";
+import { Container, Container2, LiEdit } from "./styles";
 
 import {
     AiOutlineCarryOut,
@@ -45,7 +45,6 @@ const ListCard = ({ task, id }) => {
                     name="salvar edição tarefa"
                     onClick={() => handleSave(id)}
                 >
-
                     <AiOutlineCheck />
                 </button>
             </LiEdit>
@@ -53,33 +52,34 @@ const ListCard = ({ task, id }) => {
     } else {
         if (valueButton === "Concluidas") {
             return (
-                <Container className={valueButton}>
+                <Container2 className={valueButton}>
                     <AiOutlineCarryOut />
                     <hr />
                     <label htmlFor={id}>{task}</label>
-                </Container>
+                </Container2>
             );
         }
         return (
             <Container className={valueButton}>
-            
-                    <label htmlFor={id}>{task}</label>
-                    <hr />
-             
+                <label htmlFor={id}>{task}</label>
+                <hr />
+
                 <div>
                     <button
                         name="concluir tarefa"
                         onClick={() => completedList(task, id)}
-                    >Salvar
+                    >
+                        Concluir
                         <AiOutlineCheck />
                     </button>
                     <button name="editar tarefa" onClick={handleOnEdit}>
-                      Editar  <AiOutlineEdit />
+                        Editar <AiOutlineEdit />
                     </button>
                     <button
                         name="excluir tarefa"
                         onClick={() => removeFromList(id)}
-                    >Excluir
+                    >
+                        Excluir
                         <TbTrashX />
                     </button>
                 </div>
