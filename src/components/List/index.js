@@ -6,8 +6,7 @@ import { Container } from "./styles";
 
 const List = () => {
     const { showTasks } = useTasks();
-    console.log(showTasks);
-
+   
     return (
         <Container>
             {showTasks.length > 0 ? (

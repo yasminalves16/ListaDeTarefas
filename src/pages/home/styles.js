@@ -1,10 +1,15 @@
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.main`
-  display: flex;
-  height: 100vh;
-  justify-content: space-evenly;
-  align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 1s;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 `;
 
 const appearFromLeft = keyframes`
@@ -19,15 +24,23 @@ const appearFromLeft = keyframes`
 `;
 
 export const Figure = styled.figure`
-  animation: ${appearFromLeft} 2.5s;
-  img {
-    width: 30vw;
-    border-radius: 50%;
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.5);
-  }
+    animation: ${appearFromLeft} 2.5s;
+    img {
+        width: 30vw;
+        border-radius: 50%;
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 600px) {
+        width: 80%;
+
+        img {
+            width: 80vw;
+        }
+    }
 `;
 
-const shake_horizontal = keyframes `
+const shake_horizontal = keyframes`
     0%,
     100% {
       transform: translateX(0);
@@ -49,39 +62,43 @@ const shake_horizontal = keyframes `
     90% {
       transform: translateX(-8px);
     }
-`
-
-
+`;
 
 export const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 25vh;
-
-  h1 {
-    font-weight: normal;
-    font-size: 3rem;
-    font-family: 'Poppins', sans-serif;
     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-  }
+    height: 25vh;
 
-  svg{
-    width: 25px;
-    margin-left: 15px; 
-    color: black;
-  }
-
-  button{
-    background: #3e3e3e;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    :hover{
-        animation: ${shake_horizontal} 4s infinite;
+    h1 {
+        font-weight: normal;
+        font-size: 3rem;
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        align-items: center;
     }
-  }
+
+    svg {
+        width: 25px;
+        margin-left: 15px;
+        color: black;
+    }
+
+    button {
+        background: #3e3e3e;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        :hover {
+            animation: ${shake_horizontal} 4s infinite;
+        }
+    }
+
+    @media (max-width: 724px) {
+        h1{
+            font-size: 2rem;
+        }
+    }
 `;
