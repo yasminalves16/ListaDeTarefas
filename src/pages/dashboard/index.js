@@ -5,7 +5,19 @@ import NavBar from "../../components/NavBar";
 
 import {Container, Header, Main} from "./styles";
 
+
 const Dashboard = () => {
+
+
+    const date = new Date()
+    const today = date.toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month:"2-digit",
+        year: "numeric",
+    });
+    
+
+
     return (
         <Container>
             <Header>
@@ -14,6 +26,7 @@ const Dashboard = () => {
             <Aside />
             <NavBar />
             <Main>
+                <p>{today}</p>
                 <Form />
                 <List />
             </Main>

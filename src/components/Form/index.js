@@ -22,7 +22,7 @@ const Form = () => {
                         onChange={(event) =>
                             setTaskValue(event.target.value.toLowerCase())
                         }
-                        required
+                        required="required"
                     />
                 </div>
                 <button type="submit" onClick={() => addToList(taskValue)}>

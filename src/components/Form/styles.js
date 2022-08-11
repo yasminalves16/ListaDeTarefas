@@ -14,7 +14,7 @@ export const FormStyle = styled.form`
         display: flex;
         align-items: center;
         padding: 12px;
-        width: 320px;
+        width: 400px;
         background-color: white;
         border: 2px solid black;
         border-radius: 3px;

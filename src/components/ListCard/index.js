@@ -1,10 +1,21 @@
 import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
 
+import { Container } from "./styles";
+
+import {
+    AiOutlineCarryOut,
+    AiOutlineCheck,
+    AiOutlineEdit,
+} from "react-icons/ai";
+import { TbTrashX } from "react-icons/tb";
+
 const ListCard = ({ task, id }) => {
     const { removeFromList, completedList, updateItem, valueButton } =
         useTasks();
+
     const [onEdit, setOnEdit] = useState(false);
+
     const [editValue, setEditValue] = useState(task);
 
     const handleOnEdit = () => {
@@ -20,7 +31,6 @@ const ListCard = ({ task, id }) => {
         }
     };
 
-    console.log(valueButton);
     if (onEdit) {
         return (
             <li>
@@ -31,26 +41,49 @@ const ListCard = ({ task, id }) => {
                     name="editValue"
                     onChange={(e) => setEditValue(e.target.value.toLowerCase())}
                 />
-                <button onClick={() => handleSave(id)}>Save</button>
+                <button
+                    name="salvar edição tarefa"
+                    onClick={() => handleSave(id)}
+                >
+
+                    <AiOutlineCheck />
+                </button>
             </li>
         );
     } else {
         if (valueButton === "Concluidas") {
             return (
-                <li className={valueButton}>
+                <Container className={valueButton}>
+                    <AiOutlineCarryOut />
+                    <hr />
                     <label htmlFor={id}>{task}</label>
-                </li>
+                </Container>
             );
         }
         return (
-            <li className={valueButton}>
-                <label htmlFor={id}>{task}</label>
-                <button onClick={() => completedList(task, id)}>
-                    Completa
-                </button>
-                <button onClick={handleOnEdit}> Atualizar </button>
-                <button onClick={() => removeFromList(id)}>Deletar</button>
-            </li>
+            <Container className={valueButton}>
+            
+                    <label htmlFor={id}>{task}</label>
+                    <hr />
+             
+                <div>
+                    <button
+                        name="concluir tarefa"
+                        onClick={() => completedList(task, id)}
+                    >Salvar
+                        <AiOutlineCheck />
+                    </button>
+                    <button name="editar tarefa" onClick={handleOnEdit}>
+                      Editar  <AiOutlineEdit />
+                    </button>
+                    <button
+                        name="excluir tarefa"
+                        onClick={() => removeFromList(id)}
+                    >Excluir
+                        <TbTrashX />
+                    </button>
+                </div>
+            </Container>
         );
     }
 };

@@ -25,7 +25,9 @@ export const TasksProvider = ({ children }) => {
 
 
     const addToList = (item) => {
-        setTasks([...tasks, item]);
+        if(item){
+            setTasks([...tasks, item]);
+        }
     };
 
 
