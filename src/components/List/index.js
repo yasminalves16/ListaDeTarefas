@@ -6,7 +6,7 @@ import { Container } from "./styles";
 
 const List = () => {
     const { showTasks } = useTasks();
-   
+
     return (
         <Container>
             {showTasks.length > 0 ? (
@@ -17,6 +17,10 @@ const List = () => {
                 </ul>
             ) : (
                 <figure>
+                    <figcaption>
+                        Não há nenhuma tarefa aqui, que tal adicionar uma ou
+                        tentar outro filtro ?
+                    </figcaption>
                     <img
                         src={Completed}
                         alt="Gif comemorativo todas as tasks concluidas"
