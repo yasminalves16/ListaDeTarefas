@@ -26,7 +26,7 @@ const Form = () => {
                     />
                 </div>
                 <button type="submit" onClick={() => addToList(taskValue)}>
-                    Adicionar task
+                    Adicionar
                 </button>
             </FormStyle>
         </>

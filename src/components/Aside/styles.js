@@ -5,6 +5,17 @@ export const Container = styled.div`
     justify-content: space-between;
     width: 60vw;
     margin: 50px;
+
+    @media (max-width: 1154px) {
+        flex-direction: column;
+        justify-content: center;
+
+        section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+    }
 `;
 
 export const Form = styled.form`
@@ -18,7 +29,6 @@ export const Form = styled.form`
     div {
         display: flex;
         align-items: center;
-        padding: 12px;
         width: 320px;
         background-color: white;
         border: 2px solid black;
@@ -41,5 +51,27 @@ export const Form = styled.form`
         :hover {
             background-color: #737373;
         }
+    }
+
+    @media (max-width: 400px) {
+        justify-content: center;
+
+        div {
+            width: 270px;
+            padding: 0px;
+            height: 4vh;
+        }
+
+        input {
+            padding-left: 1px;
+        }
+
+        button {
+            margin-left: 2px;
+        }
+    }
+
+    @media (max-width: 1154px) {
+        justify-content: center;
     }
 `;

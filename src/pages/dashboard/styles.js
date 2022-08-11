@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.section`
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100vh;
     align-items: center;
     margin-top: 50px;
@@ -25,4 +26,13 @@ export const Main = styled.main`
         text-align: center;
         margin-top: 15px;
     }
+
+    @media (max-width: 348px) {
+        width: 90vw;
+    }
+
+    @media (max-width: 724px) {
+        width: 80vw;
+    }
+
 `;
