@@ -35,7 +35,7 @@ const Dashboard = () => {
                 <StyleButton>
                     <Button
                         functionClick={removeAll}
-                        children={"Deletar todas as tarefas conclcuidas"}
+                        children={"Deletar todas as tarefas concluidas"}
                     />
                 </StyleButton>
                 <Form />
