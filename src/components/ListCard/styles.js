@@ -52,3 +52,34 @@ export const Container = styled.li`
         }
     }
 `;
+
+export const LiEdit = styled.li`
+    display: flex;
+    align-items: center;
+
+    input {
+        border: 2px solid black;
+        padding: 3px;
+        margin: 10px 10px 10px -20px;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        background-color: #3e3e3e;
+        color: white;
+        border: 1px solid #3e3e3e;
+        border-radius: 5px;
+        padding: 4px;
+        :hover {
+            background-color: #737373;
+        }
+    }
+
+    @media (max-width: 400px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+`;

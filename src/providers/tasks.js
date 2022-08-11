@@ -1,5 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 
+import { toast } from "react-toastify";
+
 export const TasksContext = createContext([]);
 
 export const TasksProvider = ({ children }) => {
@@ -27,7 +29,10 @@ export const TasksProvider = ({ children }) => {
     const addToList = (item) => {
         if(item){
             setTasks([...tasks, item]);
+            toast.success("Tarefa adicionada")
         }
+
+        toast.error("Insira uma tarefa")
     };
 
 
@@ -36,12 +41,15 @@ export const TasksProvider = ({ children }) => {
         localStorage.setItem("tasks", JSON.stringify(list));
         setTasks(list);
         setShowTasks(list);
+
+        toast.success("Tarefa deletada")
     };
 
 
     const completedList = (item, id) => {
         removeFromList(id);
         setTasksCompleted([...tasksCompleted, item]);
+        toast.success("Parabéns, tarefa completa.. Para ver clique em concluidas")
     };
 
 
@@ -58,6 +66,7 @@ export const TasksProvider = ({ children }) => {
 
         setTasks(taskUpdated);
         setShowTasks(taskUpdated);
+        toast.success("Tarefa atualizada com sucesso")
     };
 
 

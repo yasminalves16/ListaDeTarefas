@@ -1,7 +1,7 @@
 import { useTasks } from "../../providers/tasks";
 import { useState } from "react";
 
-import { Container } from "./styles";
+import { Container, LiEdit } from "./styles";
 
 import {
     AiOutlineCarryOut,
@@ -33,7 +33,7 @@ const ListCard = ({ task, id }) => {
 
     if (onEdit) {
         return (
-            <li>
+            <LiEdit>
                 <input
                     type="text"
                     id="editValue"
@@ -48,7 +48,7 @@ const ListCard = ({ task, id }) => {
 
                     <AiOutlineCheck />
                 </button>
-            </li>
+            </LiEdit>
         );
     } else {
         if (valueButton === "Concluidas") {
